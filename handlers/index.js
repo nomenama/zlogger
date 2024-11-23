@@ -14,6 +14,8 @@ const handlePostRequest = async (req, res) => {
             const logEntry = JSON.parse(body);
             validateEntry(logEntry);
 
+            logEntry.timestamp = new Date();
+
             // Insert into MongoDB
             const result = await db
                 .collection(COLLECTION_NAME)

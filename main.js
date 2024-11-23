@@ -1,24 +1,15 @@
 import http from "http";
-import { MongoClient } from "mongodb";
 import { writeLog } from "./utils/fs_logger.js";
 import dotenv from "dotenv";
-import { connect, COLLECTION_NAME, db } from "./db/index.js";
+import { connect } from "./db/index.js";
 import { requestHandler } from "./handlers/index.js";
+import { errorMiddleware } from "./middlewares/error.js";
 
 dotenv.config();
 const PORT = 3000;
 
 //Database connection
 connect(process.env.MONGO_URI, process.env.DATABASE_NAME);
-
-// Error handling middleware
-const errorMiddleware = (err, req, res) => {
-    writeLog(err, "error");
-    res.writeHead(500, { "Content-Type": "application/json" });
-    res.end(
-        JSON.stringify({ status: "error", message: "Internal Server Error" })
-    );
-};
 
 // Server creation
 const server = http.createServer((req, res) => {
