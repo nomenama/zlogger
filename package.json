@@ -1,0 +1,12 @@
+{
+    "name": "zlogger",
+    "version": "1.0.0",
+    "description": "Private logs server",
+    "main": "main.js",
+    "scripts": {
+        "dev": "node main.js",
+        "start": "node main.js"
+    },
+    "author": "Nomen Ama",
+    "license": "ISC"
+}
