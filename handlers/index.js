@@ -43,7 +43,7 @@ const handleGetRequest = async (req, res) => {
     const clientIp = req.connection.remoteAddress || req.socket.remoteAddress;
     writeLog(
         `${clientIp} is trying to access the ${
-            clientFilter ? clientFilter : null
+            clientFilter ? clientFilter : ""
         } logs`,
         "warning"
     );
