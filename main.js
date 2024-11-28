@@ -14,7 +14,7 @@ void connect(process.env.MONGO_URI, process.env.DATABASE_NAME);
 // Server creation
 const server = http.createServer((req, res) => {
     try {
-        requestHandler(req, res);
+        void requestHandler(req, res);
     } catch (err) {
         errorMiddleware(err, req, res);
     }
