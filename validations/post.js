@@ -1,4 +1,4 @@
-const LOG_CONTENT = ["level", "client", "message"];
+const LOG_CONTENT = ["level", "client", "service", "message"];
 const LEVEL = ["info", "warning", "error", "fatal"];
 
 export const validateEntry = (logEntry) => {
