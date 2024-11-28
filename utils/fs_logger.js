@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Resolve __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +22,11 @@ if (!fs.existsSync(LOGS_DIR)) {
 
 // Write log function
 export const writeLog = (message, type = "info") => {
+    if (process.env.NODE_ENV !== "production") {
+        console.log(`[${type.toUpperCase()}] - ${message}`);
+        return;
+    }
+
     if (type !== "info" && type !== "error" && type !== "warning") {
         console.error(
             "Incorrect log type. It must be either 'info' or 'error' or 'warning'!"
