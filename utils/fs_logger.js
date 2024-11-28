@@ -22,15 +22,15 @@ if (!fs.existsSync(LOGS_DIR)) {
 
 // Write log function
 export const writeLog = (message, type = "info") => {
-    if (process.env.NODE_ENV !== "production") {
-        console.log(`[${type.toUpperCase()}] - ${message}`);
-        return;
-    }
-
     if (type !== "info" && type !== "error" && type !== "warning") {
         console.error(
             "Incorrect log type. It must be either 'info' or 'error' or 'warning'!"
         );
+        return;
+    }
+
+    if (process.env.NODE_ENV !== "production") {
+        console.log(`[${type.toUpperCase()}] - ${message}`);
         return;
     }
 
@@ -40,8 +40,8 @@ export const writeLog = (message, type = "info") => {
         type === "error"
             ? ERROR_LOG_FILE
             : type === "warning"
-            ? WARNING_LOG_FILE
-            : INFO_LOG_FILE;
+                ? WARNING_LOG_FILE
+                : INFO_LOG_FILE;
     const formattedMessage = `[${timestamp}] [${logType}] ${
         type === "error" && message.stack ? message.stack : message
     }\n`;
