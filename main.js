@@ -9,7 +9,7 @@ dotenv.config();
 const PORT = 3000;
 
 //Database connection
-connect(process.env.MONGO_URI, process.env.DATABASE_NAME);
+void connect(process.env.MONGO_URI, process.env.DATABASE_NAME);
 
 // Server creation
 const server = http.createServer((req, res) => {
